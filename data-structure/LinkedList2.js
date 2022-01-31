@@ -1,9 +1,9 @@
-// 연결 리스트에 추가할 수 있는 Node 클래스, LinkedList 클래스를 만든다.
-
+// 양방향 연결 리스트를 구현합니다.
 class Node {
   constructor(element) {
     this.element = element;
     this.next = null;
+    this.previous = null;
   }
 }
 
@@ -24,6 +24,7 @@ class LinkedList {
     let current = this.find(item);
     if (current === null) return '노드를 삽입할 수 없습니다.';
     newNode.next = current.next;
+    newNode.previous = current;
     current.next = newNode;
   }
   // node들을 순서대로 출력합니다.
@@ -34,19 +35,37 @@ class LinkedList {
       curNode = curNode.next;
     }
   }
-  // 삭제하려는 노드의 전 노드를 찾습니다.
-  findPrevious(item) {
+
+  // 노드를 삭제합니다. 삭제하려는 노드의 전 노드를 검색할 필요가 없어졌습니다.
+  remove(item) {
+    let curNode = this.find(item);
+    if (curNode.next !== null) {
+      curNode.previous.next = curNode.next;
+      curNode.next.previous = curNode.previous;
+      curNode.next = null;
+      curNode.previous = null;
+    }
+  }
+
+  findLast() {
     let curNode = this.head;
-    while (!(curNode.next === null || curNode.next.element === item)) {
+    while (curNode.next !== null) {
       curNode = curNode.next;
     }
     return curNode;
   }
-  // 노드를 삭제합니다.
-  remove(item) {
-    let preNode = this.findPrevious(item);
-    if (preNode.next !== null) {
-      preNode.next = preNode.next.next;
+  dispReverse() {
+    let curNode = this.head;
+    curNode = this.findLast();
+    while (curNode.previous !== null) {
+      console.log(curNode.element);
+      curNode = curNode.previous;
     }
   }
 }
+const a = new LinkedList();
+a.insert('유재석', 'head');
+a.insert('박명수', '유재석');
+a.insert('길', '박명수');
+a.display();
+a.dispReverse();
