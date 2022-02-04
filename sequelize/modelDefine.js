@@ -43,20 +43,26 @@ User.sync() - This creates the table if it doesn't exist (and does nothing if it
 User.sync({ force: true }) - This creates the table, dropping it first if it already existed
 User.sync({ alter: true }) - This checks what is the current state of the table in the database (which columns it has, what are their data types, etc),
 and then performs the necessary changes in the table to make it match the model.
+
 alter 옵션을 사용하면 테이블 안에 데이터를 유지한 채 칼럼을 바꿉니다. User 모델에 name 속성을 추가했습니다.
 ./result/[3].png
 
 모델 전부를 한번에 동기화 시키려면
 sequelize.sync()를 사용합니다.
+
 */
 
 /*
-  To drop the table related to a model
-  모델 관련 테이블을 드랍하려면
-  ./result/[2].png
-  모든 테이블들을 한번에 드랍하려면
-  sequelize.drop()
+모델 관련 테이블을 드랍하려면
+./result/[2].png
 */
-
 User.drop();
 console.log('User table dropped!');
+
+/*
+모든 테이블들을 한번에 드랍하려면
+sequelize.drop()
+
+동기화 및 삭제 작업은 파괴적입니다. Sequelize는 RegExp를 수신하는 추가 안전 검사로 일치 옵션을 허용합니다.
+sequelize.sync({ force: true, match: /_test$/ });
+*/
