@@ -79,34 +79,34 @@ class BinarySearchTree {
   }
 
   //노드를 제거합니다.
-  remove(node, data) {
-    if (node === null) return null;
+  remove(data) {
+    if (this === null) return null;
     // 제거하려는 값과 노드의 값이 일치할 경우
-    if (node.value === data) {
+    if (this.value === data) {
       // 자식노드가 없는 경우
-      if (node.left === null && node.right === null) {
+      if (this.left === null && this.right === null) {
         return null;
       }
       // 오른쪽 노드가 없는 경우
-      if (node.right === null) {
-        return node.left;
+      if (this.right === null) {
+        return this.left;
       }
       // 왼쪽 노드가 없는 경우
-      if (node.left === null) {
-        return node.right;
+      if (this.left === null) {
+        return this.right;
       }
       // 둘다 있는 경우
       // 오른쪽 노드에서의 최솟값을 가진 노드를 가져옵니다.
-      const minNode = node.right.getMin();
-      node.value = minNode.value;
-      node.right = node.remove(node.right, minNode.value);
-      return node;
-    } else if (node.value > data) {
-      node.left = node.remove(node.left, data);
-      return node;
-    } else if (node.value < data) {
-      node.right = node.remove(node.right, data);
-      return node;
+      const minthis = this.right.getMin();
+      this.value = minthis.value;
+      this.right = this.right.remove(minthis.value);
+      return this;
+    } else if (this.value > data) {
+      this.left = this.left?.remove(data);
+      return this;
+    } else if (this.value < data) {
+      this.right = this.right?.remove(data);
+      return this;
     }
   }
   //최솟값을 가진 노드 호출
@@ -132,5 +132,5 @@ BST.insert(9);
 BST.insert(19);
 BST.inorder(console.log);
 
-const test = BST.remove(BST, 20);
+const test = BST.remove(17);
 test.inorder(console.log);
