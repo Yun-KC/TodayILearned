@@ -77,4 +77,60 @@ class BinarySearchTree {
     }
     callback(this.value);
   }
+
+  //노드를 제거합니다.
+  remove(node, data) {
+    if (node === null) return null;
+    // 제거하려는 값과 노드의 값이 일치할 경우
+    if (node.value === data) {
+      // 자식노드가 없는 경우
+      if (node.left === null && node.right === null) {
+        return null;
+      }
+      // 오른쪽 노드가 없는 경우
+      if (node.right === null) {
+        return node.left;
+      }
+      // 왼쪽 노드가 없는 경우
+      if (node.left === null) {
+        return node.right;
+      }
+      // 둘다 있는 경우
+      // 오른쪽 노드에서의 최솟값을 가진 노드를 가져옵니다.
+      const minNode = node.right.getMin();
+      node.value = minNode.value;
+      node.right = node.remove(node.right, minNode.value);
+      return node;
+    } else if (node.value > data) {
+      node.left = node.remove(node.left, data);
+      return node;
+    } else if (node.value < data) {
+      node.right = node.remove(node.right, data);
+      return node;
+    }
+  }
+  //최솟값을 가진 노드 호출
+  getMin() {
+    let current = this;
+    while (current.left !== null) {
+      current = current.left;
+    }
+    return current;
+  }
 }
+
+const BST = new BinarySearchTree(10);
+
+BST.insert(15);
+BST.insert(6);
+BST.insert(8);
+BST.insert(17);
+BST.insert(20);
+BST.insert(1);
+BST.insert(13);
+BST.insert(9);
+BST.insert(19);
+BST.inorder(console.log);
+
+const test = BST.remove(BST, 20);
+test.inorder(console.log);
