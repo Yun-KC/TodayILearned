@@ -1,27 +1,5 @@
-const { Sequelize, DataTypes, Model } = require('sequelize');
-const sequelize = new Sequelize('test', 'root', '1!Q', {
-  host: 'localhost',
-  port: '3306',
-  dialect: 'mysql',
-});
-
-class User extends Model {}
-
-User.init(
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-    name: DataTypes.STRING,
-  },
-  {
-    sequelize,
-    // freezeTableName: true, //기본 값 false이며, true일때 모델이름과 똑같은 테이블을 생성한다.
-    tableName: 'Employees', // 테이블 이름을 직접 알릴 수 있다.
-  }
-);
+import { User, sequelize } from './[1]userModel.mjs';
+console.log(User);
 
 /*
 모델을 정의할 때 Sequelize에게 데이터베이스의 테이블에 대한 몇 가지 정보를 알려줍니다. 
@@ -50,19 +28,4 @@ alter 옵션을 사용하면 테이블 안에 데이터를 유지한 채 칼럼�
 모델 전부를 한번에 동기화 시키려면
 sequelize.sync()를 사용합니다.
 
-*/
-
-/*
-모델 관련 테이블을 드랍하려면
-./result/[2].png
-*/
-User.drop();
-console.log('User table dropped!');
-
-/*
-모든 테이블들을 한번에 드랍하려면
-sequelize.drop()
-
-동기화 및 삭제 작업은 파괴적입니다. Sequelize는 RegExp를 수신하는 추가 안전 검사로 일치 옵션을 허용합니다.
-sequelize.sync({ force: true, match: /_test$/ });
 */
