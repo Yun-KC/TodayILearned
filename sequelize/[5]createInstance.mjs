@@ -31,7 +31,7 @@ await jane.save();
 console.log('Jane was saved to the database!');
 
 /*
-위에 build + save를 결합해 사용할 수 있는 create 메서드가 있습니다.
+Model.create() 메서드는 Model.build()로 저장되지 않은 인스턴스를 빌드하고 instance.save()로 인스턴스를 저장하는 축약형입니다.
 */
 const jane = await User.create({ name: 'Jane' });
 // Jane exists in the database now!
