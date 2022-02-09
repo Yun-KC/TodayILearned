@@ -125,4 +125,5 @@ await Foo.bulkCreate([{ bar: 'abc123' }, { bar: 'name too long' }]);
 // 유효성 검사 옵션을 줄 수 있지만 대신 성능이 저하됩니다. 아래 코드는 에러를 던집니다.
 await Foo.bulkCreate([{ bar: 'abc123' }, { bar: 'name too long' }], { validate: true });
 
-// https://sequelize.org/v7/manual/model-querying-basics.html#ordering-and-grouping  정렬과 그룹은 공식페이지에서 공부
+// https://sequelize.org/v7/manual/model-querying-basics.html#ordering-and-grouping
+// Ordering and Grouping, Limits and Pagination, Utility methods 참고!
