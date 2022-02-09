@@ -83,3 +83,46 @@ Post.findAll({
 });
 
 // 다양한 Sequelize 연산자들 https://sequelize.org/v7/manual/model-querying-basics.html#operators
+
+// Simple Update 쿼리입니다. update() 의 첫 번째 인자는 업데이트할 필드와 값, 두 번째 인자는 업데이트할 행들을 필터링합니다.
+await User.update(
+  { lastName: 'Doe' },
+  {
+    where: {
+      lastName: null,
+    },
+  }
+);
+
+// Simple Delete 쿼리입니다.
+await User.destroy({
+  where: {
+    firstName: 'Jane',
+  },
+});
+// 모든 행을 삭제하려면 truncate: true 을 추가합니다. 만약 truncate가 true면 where문은 무시합니다.
+await User.destroy({
+  truncate: true,
+});
+
+// Creating in bulk, bulkCreate는 model.create와 비슷합니다. 대신 bulkCreate는 배열을 인자로 받습니다.
+const captains = await Captain.bulkCreate([{ name: 'Jack Sparrow' }, { name: 'Davy Jones' }]);
+console.log(captains.length); // 2
+console.log(captains[0] instanceof Captain); // true
+console.log(captains[0].name); // 'Jack Sparrow'
+console.log(captains[0].id); // 1 // (or another auto-generated value)
+
+const Foo = sequelize.define('foo', {
+  bar: {
+    type: DataTypes.TEXT,
+    validate: {
+      len: [4, 6],
+    },
+  },
+});
+// bulkCreate는 각 객체의 유효성 검사를 하지않습니다. 아래 코드는 유효성 검사없이 데이터를 생성합니다.
+await Foo.bulkCreate([{ bar: 'abc123' }, { bar: 'name too long' }]);
+// 유효성 검사 옵션을 줄 수 있지만 대신 성능이 저하됩니다. 아래 코드는 에러를 던집니다.
+await Foo.bulkCreate([{ bar: 'abc123' }, { bar: 'name too long' }], { validate: true });
+
+// https://sequelize.org/v7/manual/model-querying-basics.html#ordering-and-grouping  정렬과 그룹은 공식페이지에서 공부
