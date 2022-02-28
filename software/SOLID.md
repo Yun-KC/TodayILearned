@@ -25,3 +25,10 @@ SOLID는 아키텍처를 정의하는 원칙이다. 함수와 데이터 구조�
 ### DIP: 의존성 역전 원칙 (Dependency Inversion Principle)
 
 고수준 정책을 구현하는 코드는 저수준 세부사항을 구현하는 코드에 절대로 의존해서는 안 된다. 대신 세부사항이 정책에 의존해야 한다.
+
+---
+
+### 목표:
+
+- 5가지 원칙을 주제로 글쓰기.
+- [의존성 주입(Dependency Injection, D.I)](https://doongji-cold-noodles.tistory.com/41) 글 완성.
