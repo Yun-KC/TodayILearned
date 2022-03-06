@@ -1,4 +1,4 @@
-# Java Array 꿀팁 모음
+# Java System 매서드 모음
 
 > ## 배열의 복사
 >
