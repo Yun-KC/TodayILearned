@@ -2,25 +2,35 @@ import java.util.Arrays;
 
 
 class A {
-  static int test = 10;
-  int abc = 'b';
   public static void main(String[] args) {
-    int b = new B().test1();
-    
-    System.out.println(b);
-  }
-  static int add(int x, int y) {
-    test = 11;
-    return x + y;
+    Car car = new Car();
+    car.test();
+    System.out.println(car.test.test.test.test == car);
   }
 }
-class B {
-  static int test(int a, int b) {
-    System.out.println("여기 실행된여");
-    return 1/1;
+class Car {
+  
+  String color;
+  String gearType;
+  int door;
+  Car test;
+  Car() {
+    this("빨강", "자동", 4);
+    this.color = "보라";
+    this.door = 'a';
   }
-  char test1() {
-    test(1,2);
-    return 'a';
+  Car(String c, String g, int d ){
+    // this("노랑");
+    color = c;
+    gearType = g;
+    door = d;
+    test = this;
+  }
+  Car(String a) {
+
+  }
+  void test() {
+    int a = 10;
+    System.out.println(a);
   }
 }
