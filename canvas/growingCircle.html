@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Canvas</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    canvas {
+      background: #eee;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas class="canvas" width="600" height="400">이 브라우저는 캔버스를 지원하지 않습니다.</canvas>
+
+  <script>
+    // beginPath
+    // moveTo
+    // lineTo
+    // closePath
+    const canvas = document.querySelector('.canvas');
+    const context = canvas.getContext('2d');
+    let R = 0;
+
+    function draw() {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.beginPath();
+      context.arc(300, 200, R, 0, 2 * Math.PI, true);
+      context.fill();
+      R += 1;
+      if (R > 200) return;
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  </script>
+</body>
+
+</html>
