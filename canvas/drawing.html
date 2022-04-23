@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Canvas</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    canvas {
+      background-color: #eee;
+    }
+
+    .color-btn {
+      width: 30px;
+      height: 30px;
+      border: 0;
+      border-radius: 50%;
+    }
+
+    .color-btn[data-color='black'] {
+      background: black;
+    }
+
+    .color-btn[data-color='red'] {
+      background: red;
+    }
+
+    .color-btn[data-color='green'] {
+      background: green;
+    }
+
+    .color-btn[data-color='blue'] {
+      background: blue;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Image</h1>
+  <canvas class="canvas" width="600" height="400">이 브라우저는 캔버스를 지원하지 않습니다.</canvas>
+  <div class="control">
+    <button class="color-btn" data-color="black"></button>
+    <button class="color-btn" data-color="red"></button>
+    <button class="color-btn" data-color="green"></button>
+    <button class="color-btn" data-color="blue"></button>
+  </div>
+  <script>
+    const canvas = document.querySelector('.canvas');
+    const context = canvas.getContext('2d');
+    const control = document.querySelector('.control');
+
+    let drawingMode = false;
+    let colorVal = "black";
+
+    function downHandler() {
+      console.log('마우스 업')
+      drawingMode = true;
+    }
+    function upHandler() {
+      console.log('마우스 다운')
+      drawingMode = false;
+    }
+
+    function moveHandler(event) {
+      if (!drawingMode) return;
+      context.beginPath();
+      context.arc(event.offsetX, event.offsetY, 10, 0, Math.PI * 2, false);
+      context.fill();
+    }
+    function setColor(event) {
+      // console.log(event.target.getAttribute('data-color'))
+      context.fillStyle = colorVal;
+      colorVal = event.target.getAttribute('data-color');
+    }
+    canvas.addEventListener('mousedown', downHandler);
+    canvas.addEventListener('mouseup', upHandler);
+    canvas.addEventListener('mousemove', moveHandler);
+    control.addEventListener('click', setColor);
+  </script>
+</body>
+
+</html>
