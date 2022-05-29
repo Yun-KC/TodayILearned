@@ -1,6 +1,8 @@
 import React from 'react';
 import {View, StyleSheet, Text, Button} from 'react-native';
 import MyButton from './components/MyButton';
+import EventButton from './components/EventButton';
+import EventInput from './components/EventInput';
 /*
   View는 UI를 구성하는 기본적인 요소로 <div>와 비슷한 역할을 합니다.
   
@@ -21,6 +23,8 @@ const App = () => {
       <MyButton title="자식2" />
       <MyButton title="자식3" />
       <MyButton />
+      <EventButton />
+      <EventInput />
     </View>
   );
 };
