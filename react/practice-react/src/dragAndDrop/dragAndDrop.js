@@ -14,7 +14,8 @@ const Element = styled.div`
   text-align: center;
 `;
 const mousedownHandler = (event) => {
-  console.log(event.target.);
+  console.log(event);
+  console.log(event.target.offsetWidth);
   console.log('마우스다운 핸들러');
 };
 

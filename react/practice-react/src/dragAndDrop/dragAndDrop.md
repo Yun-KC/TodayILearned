@@ -35,3 +35,5 @@
 #### screenX, screenY
 
 모니터 화면을 기준으로 좌표를 제공합니다.
+
+[스택오버플로 마우스 이벤트 좌표 설명](https://stackoverflow.com/questions/6073505/what-is-the-difference-between-screenx-y-clientx-y-and-pagex-y)
