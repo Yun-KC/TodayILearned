@@ -1,6 +1,5 @@
-import DragAndDrop from './dragAndDrop/dragAndDrop';
 const App = () => {
-  return <DragAndDrop></DragAndDrop>;
+  return <div>hi</div>;
 };
 
 export default App;
