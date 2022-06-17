@@ -1,15 +1,27 @@
-import SimplePizzaFactory from './SimplePizzaFactory';
-import Pizza from './interface/Pizza';
+import { NYStylePepperoniPizza, ChicagoStylePepperoniPizza } from './PepperoniPizza';
+import { NYStyleCheesePizza, ChicagoStyleCheesePizza } from './CheesePizza';
 
-class PizzaStore {
-  constructor(public factory: SimplePizzaFactory) {}
-  orderPizza(type: string) {
-    let pizza: Pizza;
-    pizza = this.factory.createPizza(type);
-    pizza.prepare();
-    pizza.bake();
-    pizza.cut();
-    pizza.box();
-    return pizza;
+import Pizza from './abstractClass/Pizza';
+import PizzaStore from './abstractClass/PizaaStore';
+
+export class NYStylePizzaStore extends PizzaStore {
+  createPizza(type: string): Pizza {
+    switch (type) {
+      case 'cheese':
+        return new NYStyleCheesePizza();
+      case 'pepperoni':
+        return new NYStylePepperoniPizza();
+    }
+  }
+}
+
+export class ChicagoStylePizzaStore extends PizzaStore {
+  createPizza(type: string): Pizza {
+    switch (type) {
+      case 'cheese':
+        return new ChicagoStyleCheesePizza();
+      case 'pepperoni':
+        return new ChicagoStylePepperoniPizza();
+    }
   }
 }
