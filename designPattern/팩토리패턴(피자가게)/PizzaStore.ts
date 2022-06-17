@@ -1,8 +1,12 @@
-import { NYStylePepperoniPizza, ChicagoStylePepperoniPizza } from './PepperoniPizza';
-import { NYStyleCheesePizza, ChicagoStyleCheesePizza } from './CheesePizza';
+import {
+  NYStyleCheesePizza,
+  ChicagoStyleCheesePizza,
+  NYStylePepperoniPizza,
+  ChicagoStylePepperoniPizza,
+} from './Pizza';
 
-import Pizza from './abstractClass/Pizza';
-import PizzaStore from './abstractClass/PizaaStore';
+import Pizza from './abstract/Pizza.absract';
+import PizzaStore from './abstract/PizaaStore.absract';
 
 export class NYStylePizzaStore extends PizzaStore {
   createPizza(type: string): Pizza {

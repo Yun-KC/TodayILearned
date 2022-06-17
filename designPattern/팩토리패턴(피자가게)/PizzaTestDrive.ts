@@ -1,4 +1,4 @@
-import PizzaStore from './abstractClass/PizaaStore';
+import PizzaStore from './abstract/PizaaStore.absract';
 import { NYStylePizzaStore, ChicagoStylePizzaStore } from './PizzaStore';
 class PizzaTestDrive {
   main() {
