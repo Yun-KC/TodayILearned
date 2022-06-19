@@ -4,6 +4,7 @@ let observer = null;
 function emitChange() {
   observer(knightPosition);
 }
+
 export function observe(o) {
   if (observer) {
     throw new Error('Multiple observers not implemented.');
