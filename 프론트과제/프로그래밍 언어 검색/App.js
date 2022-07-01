@@ -17,11 +17,8 @@ export default class App {
     this.state.tags = this.storage.getItem(STORAGE_TAG_KEY);
     this.state.keyword = this.storage.getItem(STORAGE_KEYWORD_KEY);
 
-    //test
-    this.state.tags = ['java', 'C++'];
-
     this.selectedTag = new SelectedTag({ $target, tags: this.state.tags, storage: this.storage });
-    // this.searchInput = new SearchInput({ $target, storage: this.storage });
+    this.searchInput = new SearchInput({ $target, storage: this.storage, onSearch: () => {} });
   }
   setState() {}
 }

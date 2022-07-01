@@ -14,7 +14,7 @@ export default class SelectedTag {
     this.state = tags;
     this.render();
   }
-  // div태그를 보여줄지 말지 결정하는 함수.
+  // div태그를 보여줄지 말지 결정.
   showDiv() {
     if (this.state.length === 0) {
       this.$div.style.display = 'none';
