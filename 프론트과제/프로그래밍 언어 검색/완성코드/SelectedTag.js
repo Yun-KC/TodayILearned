@@ -1,13 +1,14 @@
-import { STORAGE_TAG_KEY } from './storageKey.js';
+import { STORAGE_TAG_KEY } from "./storageKey.js";
 
 export default class SelectedTag {
   constructor({ $target, tags, storage }) {
     this.$target = $target;
 
     //div 태그 초기화.
-    this.$div = document.createElement('div');
-    this.$div.className = 'SelectedLanguage';
-    $target.insertBefore(this.$div, $target.firstChild);
+    this.$div = document.createElement("div");
+    this.$div.className = "SelectedLanguage";
+    this.$div.style.visibility = "hidden";
+    $target.append(this.$div);
 
     this.storage = storage;
 
@@ -17,16 +18,15 @@ export default class SelectedTag {
   // div태그를 보여줄지 말지 결정.
   showDiv() {
     if (this.state.length === 0) {
-      this.$div.style.display = 'none';
+      this.$div.style.visibility = "hidden";
       return false;
     } else {
-      this.$div.style.display = 'flex';
+      this.$div.style.visibility = "visible";
       return true;
     }
   }
   // 스토리지에 현재 태그를 저장.
   save() {
-    console.log(this.state);
     this.storage.setItem(STORAGE_TAG_KEY, this.state);
   }
 
@@ -40,10 +40,10 @@ export default class SelectedTag {
   render() {
     // 태그 유무에 따라 div 렌더 결정
     if (!this.showDiv()) return;
-    this.$div.innerHTML = '';
-    const $ul = document.createElement('ul');
+    this.$div.innerHTML = "";
+    const $ul = document.createElement("ul");
     for (let i = 0; i < this.state.length; i++) {
-      const $li = document.createElement('li');
+      const $li = document.createElement("li");
       $li.append(document.createTextNode(this.state[i]));
       $ul.append($li);
     }
@@ -55,7 +55,7 @@ export default class SelectedTag {
     const findTagIdx = this.state.findIndex((el) => el === tag);
 
     // 있다면 삭제
-    if (findTagIdx !== -1) this.state.splice(findTafindTagIdx, 1);
+    if (findTagIdx !== -1) this.state.splice(findTagIdx, 1);
 
     // 맨 뒤로 추가
     this.state.push(tag);
