@@ -40,18 +40,16 @@ function mergeArr(arr = []) {
 
 mergeArr(knowingPeople);
 parties.forEach(({ elements }) => mergeArr(elements));
-parent.forEach((el) => find(el));
+parent.forEach(find);
 
-const truthSet = num ? parent[knowingPeople[0]] : 0;
+const truthSet = num ? find(knowingPeople[0]) : 0;
 
 let result = 0;
 
 parties.forEach(({ elements }) => {
-  const parentArr = elements.map((el) => find(el));
+  const parentArr = elements.map(find);
   const idx = parentArr.findIndex((e) => e === truthSet);
   if (idx === -1) result++;
 });
 
 console.log(result);
-
-// 예제 코드는 전부 통과하지만 3%에서 실패.. 원인이 뭘까
